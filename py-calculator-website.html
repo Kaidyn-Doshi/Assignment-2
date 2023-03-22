@@ -1,0 +1,57 @@
+// After researching some methods and trying to use just Pyiodide, this was the most elegant I could make the site
+// However, I needed to use javascript to have the alert display a message, and also to allow the output to be formatted.
+// In my opinion, javascript is a lot more easy to use when it comes to coding scripts than python. I think it would be easier to do my RST with JS instead of PyGame.
+
+<!DOCTYPE html>
+<html lang="en-ca">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="Area & Circumference Calculator">
+	<meta name="keywords" content="ics2o, kaidyn-doshi, viridianknight7">
+	<meta name="author" content="Kaidyn Doshi">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+	<style>
+		pre {
+			background-color: #f8f8f8;
+			border: 1px solid #ddd;
+			padding: 10px;
+			font-size: 14px;
+			font-family: Verdana;
+		}
+
+		body {
+			display: flex;
+			justify-content: center;
+		}
+	</style>
+	<title>Area and Circumference</title>
+</head>
+
+<body>
+	<script defer src="https://pyscript.net/alpha/pyscript.js">
+	</script>
+	<script>
+		var calcDiameter = parseFloat(prompt("Please enter the diameter of the circle:"));
+    var pyScript = document.createElement("py-script");
+    pyScript.textContent = `
+        pi = 3.14159
+
+        calcRadius = ${calcDiameter} / 2
+
+        calcArea = pi * calcRadius * calcRadius
+
+        calcCirc = pi * ${calcDiameter}
+
+        print('<pre>For a circle with a diameter of ${calcDiameter} units:</pre>')
+        print('<pre>The radius would be: ' + str(calcRadius) + ' units</pre>')
+        print('<pre>The area would be: ' + str(calcArea) + ' square units</pre>')
+        print('<pre>And the circumference would be: ' + str(calcCirc) + ' units</pre>')
+    `;
+    document.body.appendChild(pyScript);
+
+	</script>
+</body>
+
+</html>
