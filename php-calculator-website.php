@@ -61,7 +61,7 @@
           <form action="" method="GET" class="mdl-grid" autocomplete="off">
             <div class="mdl-cell mdl-cell--12-col">
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="number" id="diameter" name="diameter">
+                <input class="mdl-textfield__input" type="text" id="diameter" name="diameter" pattern="[0-9]+(\.[0-9]+)?" title="Invalid input">
                 <label class="mdl-textfield__label" for="diameter">Diameter</label>
               </div>
             </div>
@@ -72,7 +72,7 @@
             </div>
           </form>
             <?php
-            if(isset($_GET['diameter'])){
+            if(isset($_GET['diameter']) && $_GET['diameter'] >= 0){
                 $dia = $_GET['diameter'];
                 $radius = $dia / 2;
                 $area = round(pi() * pow($radius, 2), 2);
@@ -83,8 +83,12 @@
                 echo "Area: $area <br>";
                 echo "Circumference: $circumference <br>";
                 echo "</div>";
+            } 
+            elseif(isset($_GET['diameter']) && $_GET['diameter'] < 0){
+                echo "<div class='results'>Please enter a non-negative integer only.</div>";
             }
             ?>
+
         </div>
       </div>
     </main>
@@ -99,9 +103,8 @@
         <div class="mdl-mini-footer__right-section">
           <div class="mdl-logo">ICS2O</div>
           <ul class="mdl-mini-footer__link-list">
-            <li><a href="#">More</a></li>
-            <li><a href="#">Text</a></li>
-            <li><a href="#">Here</a></li>
+            <li><a href="#">Kaidyn Doshi</a></li>
+            <li><a href="#">2023</a></li>
           </ul>
         </div>
       </footer>
